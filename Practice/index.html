@@ -1,0 +1,27 @@
+<!DOCTYPE html> 
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1 id="displayName"></h1>
+    <input id="userInput" type="text">
+    <button onclick="getuserName()">API 요청</button>
+
+    <script>
+        function getuserName() {
+            const userName = document.getElementById('userInput').value;
+
+            fetch(`http://localhost:8080/name/${userName}`)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data.userName);
+                document.getElementById("displayName").innerHTML = data.userName; // API 응답에 따라 적절히 수정
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
