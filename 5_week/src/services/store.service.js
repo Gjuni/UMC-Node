@@ -1,24 +1,27 @@
-import {
-    addStore,
-    locationOfStore
-} from "../respositories/store.repository.js"; // 올바른 경로로 import
+import { addStoreResponsibility } from "../respositories/store.repository.js"
 
-console.log(addStore);
 
-export const StoreUpdate = async (data) => {
-    const storeinfo = await addStore({ store_name : data.store_name, store_address : data.store_address });
-    return store;
+// Service에서 받은 데이터를 DTO를 통해 추가 시킴
+export const storeUpdateService = async (data) => {
+    const storeInfo = await addStoreResponsibility({
+        storeName: data.storeName,
+        storeAddress: data.storeAddress,
+    });
 
-    if(storeinfo === null) {
+    if (!storeInfo) {
         throw new Error("이미 존재하는 가게입니다.");
     }
-}
 
-export const StoreLocation = async (data) => {
-    const storeinfo = await locationOfStore({ address : data.address });
+    return storeInfo;
+};
 
-    if(storeinfo === null) {
+export const storeLocationService = async (data) => {
+    const locationInfo = await locationResponsibility({
+        storeId : data.storeId,
+        storeAddress: data.storeAddress,
+    });
+
+    if(!locationInfo) {
         throw new Error("가게가 존재하지 않습니다.");
     }
-    return storeinfo;
 }
