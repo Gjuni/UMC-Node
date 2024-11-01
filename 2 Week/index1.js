@@ -23,3 +23,5 @@ app.get('/' ,(req, res) => {
 app.listen(app.get('port'), () => {
    console.log(app.get('port'), "에서 대기 중");
 })
+
+/** express 모델에 http 모듈이 내장되어있어 http를 따로 import할 필요 없음 */
